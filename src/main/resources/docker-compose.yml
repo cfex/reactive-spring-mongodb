@@ -1,0 +1,18 @@
+version: "3"
+services:
+  mongo:
+    hostname: mongo
+    image: mongo:4.4.8
+    container_name: mongo
+    expose:
+      - 27017
+    ports:
+      - "27017:27017"
+    restart: unless-stopped
+  reactive-spring-mongo:
+    image: reactive-spring-mongo:1.0.1
+    container_name: reactive-spring-mongo
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongo
